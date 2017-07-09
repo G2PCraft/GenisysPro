@@ -2072,7 +2072,7 @@ class Server{
 		}
 
 		if(!$forceSync and $this->networkCompressionAsync){
-			$task = new CompressBatchedTask($str, $targets, $this->networkCompressionLevel);
+			$task = new CompressBatchedTask($str, $targets, $this->networkCompressionLevel, $immediate);
 			$this->getScheduler()->scheduleAsyncTask($task);
 		}else{
 			$this->broadcastPacketsCallback(zlib_encode($str, ZLIB_ENCODING_DEFLATE, $this->networkCompressionLevel), $targets, $immediate);
